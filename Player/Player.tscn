@@ -1,0 +1,41 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Player/Knight_Idle_1.png" type="Texture" id=1]
+[ext_resource path="res://Player/Player.gd" type="Script" id=2]
+[ext_resource path="res://Player/Knight_Idle_2.png" type="Texture" id=3]
+[ext_resource path="res://Player/Knight_Idle_4.png" type="Texture" id=4]
+[ext_resource path="res://Player/Knight_Walk_1.png" type="Texture" id=5]
+[ext_resource path="res://Player/Knight_Walk_3.png" type="Texture" id=6]
+[ext_resource path="res://Player/Knight_Idle_3.png" type="Texture" id=7]
+[ext_resource path="res://Player/Knight_Walk_2.png" type="Texture" id=8]
+[ext_resource path="res://Player/Knight_Walk_4.png" type="Texture" id=9]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 3 ), ExtResource( 7 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "idle",
+"speed": 4.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 8 ), ExtResource( 6 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 7.90621, 10.4811 )
+
+[node name="Player" type="KinematicBody2D"]
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "walk"
+frame = 3
+playing = true
+offset = Vector2( 0, -7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -0.927856 )
+shape = SubResource( 2 )
