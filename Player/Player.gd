@@ -23,7 +23,7 @@ func _ready():
 	pass
 
 
-func _physics_process(delta): # Per ora non mi serve accesso al kinematicbody del player, quindi non ho bisogno di _physic_process
+func _physics_process(delta): 
 #	match state:
 #		MOVE:
 #			move_state(delta)
@@ -46,23 +46,13 @@ func move_state(delta):
 	if input_vector != Vector2.ZERO: # Se l'input e diverso da un vettore zero:
 		
 		
-#		roll_vector = input_vector
-#		swordHitbox.knockback_vector = input_vector
-#
-#		animationTree.set("parameters/Idle/blend_position", input_vector) # Imposta blend position nella posizione input del player
-#		animationTree.set("parameters/Run/blend_position", input_vector) # Stessa cosa di sopra ma per Run
-#		animationTree.set("parameters/Attack/blend_position", input_vector) # Stessa cosa di sopra ma per Attack
-#		animationTree.set("parameters/Roll/blend_position", input_vector) # Stessa cosa di sopra ma per Attack
-#		animationState.travel("Run") # Vai alla animazione Run
 		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta) # Sposta il valore da velocita a velocita massima
-		
-		
 		print(input_vector)
+		sprite.flip_h = velocity.x < 0
 		
 	else: # Se invece l'input E' un vettore zero (cioè nessun tasto viene premuto)
 		print("Zero: " + str(input_vector))
 		
-#		animationState.travel("Idle") # Vai alla animazione Idle
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta) # Sposta il valore da velocita a vettore zero
 	
 	move()
