@@ -20,7 +20,7 @@ onready var sprite = $AnimatedSprite
 
 
 func _ready():
-	pass
+	sprite.frame = 0
 
 
 func _physics_process(delta): 
@@ -47,21 +47,24 @@ func move_state(delta):
 		
 		
 		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta) # Sposta il valore da velocita a velocita massima
-		print(input_vector)
+		
+		sprite.animation = "walk"
+		sprite.playing = true
 		sprite.flip_h = velocity.x < 0
 		
-	else: # Se invece l'input E' un vettore zero (cioè nessun tasto viene premuto)
-		print("Zero: " + str(input_vector))
+	else: # Se invece l'input è un vettore zero (cioè nessun tasto viene premuto)
 		
+		sprite.animation = "idle"
+		sprite.playing = true
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta) # Sposta il valore da velocita a vettore zero
 	
 	move()
 	
-	if Input.is_action_just_pressed("roll"):
-		state = ROLL
-	
-	if Input.is_action_just_pressed("attack"):
-		state = ATTACK
+#	if Input.is_action_just_pressed("roll"):
+#		state = ROLL
+#
+#	if Input.is_action_just_pressed("attack"):
+#		state = ATTACK
 
 
 #func roll_state():
@@ -84,7 +87,7 @@ func move_state(delta):
 	
 func move():
 	velocity = move_and_slide(velocity)
-	print("Move to: " + str(velocity))
+	#print("Move to: " + str(velocity)) <-- Uncomment for debugging
 
 
 

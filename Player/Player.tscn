@@ -24,18 +24,17 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 7.90621, 10.4811 )
+extents = Vector2( 7.07045, 9.44079 )
 
 [node name="Player" type="KinematicBody2D"]
+collision_layer = 2
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "walk"
-frame = 1
-playing = true
 offset = Vector2( 0, -7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -0.927856 )
+position = Vector2( -1.90735e-06, -0.0794311 )
 shape = SubResource( 2 )
