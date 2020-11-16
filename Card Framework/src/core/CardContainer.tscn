@@ -1,0 +1,106 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Card Framework/fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Card Framework/src/core/CardContainer.gd" type="Script" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 1 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 75, 120 )
+
+[node name="Cards" type="Area2D"]
+scale = Vector2( 0.5, 0.5 )
+script = ExtResource( 2 )
+
+[node name="Control" type="Panel" parent="."]
+margin_right = 150.0
+margin_bottom = 240.0
+mouse_filter = 1
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="Control"]
+margin_right = 150.0
+margin_bottom = 40.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Control/CenterContainer"]
+margin_left = 54.0
+margin_top = 10.0
+margin_right = 96.0
+margin_bottom = 30.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Deck"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ManipulationButtons" type="VBoxContainer" parent="Control"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 2.0
+margin_top = 20.0
+margin_right = 20.0
+margin_bottom = 44.0
+mouse_filter = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="View" type="Button" parent="Control/ManipulationButtons"]
+margin_right = 20.0
+margin_bottom = 20.0
+mouse_filter = 1
+text = "V"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Shuffle" type="Button" parent="Control/ManipulationButtons"]
+margin_top = 24.0
+margin_right = 20.0
+margin_bottom = 44.0
+mouse_filter = 1
+text = "S"
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="Control/ManipulationButtons"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 75, 120.44 )
+shape = SubResource( 3 )
+
+[node name="ViewPopup" type="PopupPanel" parent="."]
+margin_right = 8.0
+margin_bottom = 8.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CardView" type="GridContainer" parent="ViewPopup"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 4.0
+margin_bottom = 4.0
+columns = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="ViewPopup"]

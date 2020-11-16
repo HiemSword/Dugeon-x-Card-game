@@ -8,9 +8,38 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "Board",
+"language": "GDScript",
+"path": "res://Card Framework/src/core/BoardTemplate.gd"
+}, {
+"base": "Area2D",
+"class": "Card",
+"language": "GDScript",
+"path": "res://Card Framework/src/core/CardTemplate.gd"
+}, {
+"base": "Area2D",
+"class": "CardContainer",
+"language": "GDScript",
+"path": "res://Card Framework/src/core/CardContainer.gd"
+}, {
+"base": "CardContainer",
+"class": "Hand",
+"language": "GDScript",
+"path": "res://Card Framework/src/core/Hand.gd"
+}, {
+"base": "CardContainer",
+"class": "Pile",
+"language": "GDScript",
+"path": "res://Card Framework/src/core/Pile.gd"
+} ]
 _global_script_class_icons={
-
+"Board": "",
+"Card": "",
+"CardContainer": "",
+"Hand": "",
+"Pile": ""
 }
 
 [application]
