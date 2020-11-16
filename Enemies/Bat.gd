@@ -33,7 +33,7 @@ func _physics_process(delta):
 	
 	match state:
 		IDLE:
-			print("IDLE STATE")
+			#print("IDLE STATE")
 			velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 			seek_player()
 			sprite.play("idle")
@@ -42,7 +42,7 @@ func _physics_process(delta):
 				
 				
 		WANDER:
-			print("WANDER STATE")
+			#print("WANDER STATE")
 			seek_player()
 			if wanderController.get_time_left() == 0:
 				update_wander()
@@ -52,7 +52,7 @@ func _physics_process(delta):
 				
 				
 		CHASE:
-			print("CHASE STATE")
+			#print("CHASE STATE")
 			var player = playerDetectionZone.player
 			if player != null:
 				accelerate_towards_point(player.global_position, delta)
@@ -66,27 +66,27 @@ func _physics_process(delta):
 
 
 func accelerate_towards_point(point, delta):
-	print("Accelerate_towards_point : point " + str(point) + str(" delta ") + str(delta))
+	#print("Accelerate_towards_point : point " + str(point) + str(" delta ") + str(delta))
 	var direction = global_position.direction_to(point)
 	# [OUTDATED IN P21] Guarda "Make an Action RPG in Godot 3.2 P16" 25:40
 	velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
 	sprite.play("walk")
 	sprite.flip_h = velocity.x < 0 
-	print("Enemy velocity: " + str(velocity))
+	#print("Enemy velocity: " + str(velocity))
 
 func update_wander():
-	print("Update_wander")
+	#print("Update_wander")
 	state = pick_random_state([IDLE, WANDER])
 	wanderController.start_wander_timer(rand_range(1, 3))
 
 
 func seek_player():
-	print("seek_player")
+	#print("seek_player")
 	if playerDetectionZone.can_see_player():
 		state = CHASE
 
 func pick_random_state(state_list):
-	print("pick_random_state")
+	#print("pick_random_state")
 	state_list.shuffle()
 	return state_list.pop_front()
 
@@ -111,3 +111,9 @@ func pick_random_state(state_list):
 #
 #func _on_HurtBox_invincibility_ended():
 #	animationPlayer.play("Stop")
+
+
+
+func _on_BattleRange_body_entered(body):
+	print("BATTLE with " + str(body))
+	get_tree().change_scene("res://Card Game.tscn")

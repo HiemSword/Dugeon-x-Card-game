@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Enemies/Thief_Walk_1.png" type="Texture" id=1]
 [ext_resource path="res://Enemies/Thief_Walk_2.png" type="Texture" id=2]
@@ -9,10 +9,11 @@
 [ext_resource path="res://Enemies/Thief_Walk_4.png" type="Texture" id=7]
 [ext_resource path="res://Enemies/Thief_Idle_4.png" type="Texture" id=8]
 [ext_resource path="res://Enemies/WanderController.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Overlap/BattleRange.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Enemies/Thief_Idle_3.png" type="Texture" id=11]
 [ext_resource path="res://Enemies/Thief_Idle_1.png" type="Texture" id=12]
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 12 ), ExtResource( 5 ), ExtResource( 11 ), ExtResource( 8 ) ],
 "loop": true,
@@ -25,19 +26,20 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 5.3642, 8.67136 )
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 4.38929, 7.50706 )
 
-[sub_resource type="CircleShape2D" id=4]
+[sub_resource type="CircleShape2D" id=3]
 radius = 55.7301
 
 [node name="Enemy" type="KinematicBody2D"]
-collision_layer = 16
+collision_layer = 48
+collision_mask = 33
 script = ExtResource( 4 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -6.62674 )
-frames = SubResource( 2 )
+frames = SubResource( 1 )
 animation = "idle"
 
 [node name="ShadowSprite" type="Sprite" parent="."]
@@ -45,14 +47,20 @@ visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -0.0852585, 0.767319 )
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="PlayerDetectionZone" parent="." instance=ExtResource( 6 )]
 
 [node name="CollisionShape2D" parent="PlayerDetectionZone" index="0"]
 modulate = Color( 1, 1, 1, 0.2 )
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
 [node name="WanderController" parent="." instance=ExtResource( 9 )]
 
+[node name="BattleRange" parent="." instance=ExtResource( 10 )]
+collision_mask = 2
+[connection signal="body_entered" from="BattleRange" to="." method="_on_BattleRange_body_entered"]
+
 [editable path="PlayerDetectionZone"]
+
+[editable path="BattleRange"]
