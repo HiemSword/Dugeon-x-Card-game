@@ -54,6 +54,7 @@ PluginSettings="*res://addons/github-integration/scripts/PluginSettings.gd"
 IconLoaderGithub="*res://addons/github-integration/scripts/IconLoaderGithub.gd"
 RestHandler="*res://addons/github-integration/scenes/RestHandler.tscn"
 UserData="*res://addons/github-integration/scripts/user_data.gd"
+cfc="*res://Card Framework/cfc.gd"
 
 [display]
 

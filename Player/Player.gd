@@ -5,14 +5,15 @@ export var MAX_SPEED = 80
 export var ROLL_SPEED = 125
 export var FRICTION = 400
 
+# vvv - Non ci serve per ora ma se commentato non funziona più niente
 enum {
 	MOVE,
 	ROLL,
 	ATTACK
 }
 
-var state = MOVE
-var velocity = Vector2.ZERO
+var state = MOVE #Non serve per ora
+var velocity = Vector2.ZERO 
 var roll_vector = Vector2.DOWN
 
 
@@ -38,9 +39,11 @@ func _physics_process(delta):
 func move_state(delta):
 	
 	var input_vector = Vector2.ZERO
-	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left") 
+	#Prendi la forza con cui viene premuto il tasto destro e sinistro (nel caso della tastiera è sempre 1)
+	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+	#Stessa cosa ma con basso e alto
 	input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
-	input_vector = input_vector.normalized()
+	input_vector = input_vector.normalized() #Normalizali (li approsima)
 	
 	
 	if input_vector != Vector2.ZERO: # Se l'input e diverso da un vettore zero:
@@ -48,15 +51,13 @@ func move_state(delta):
 		
 		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta) # Sposta il valore da velocita a velocita massima
 		
-		sprite.animation = "walk"
-		sprite.playing = true
-		sprite.flip_h = velocity.x < 0
+		sprite.play("walk") # riproduci animazione walk
+		sprite.flip_h = velocity.x < 0 # inverti lo sprite se andiamo verso destra
 		
 	else: # Se invece l'input è un vettore zero (cioè nessun tasto viene premuto)
 		
-		sprite.animation = "idle"
-		sprite.playing = true
-		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta) # Sposta il valore da velocita a vettore zero
+		sprite.play("idle") # riproduci animazione idle
+		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta) # Sposta il valore da velocita a vettore zero (moltiplicando con delta)
 	
 	move()
 	
