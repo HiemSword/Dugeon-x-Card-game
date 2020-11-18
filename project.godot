@@ -12,27 +12,27 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Board",
 "language": "GDScript",
-"path": "res://Card Framework/src/core/BoardTemplate.gd"
+"path": "res://src/core/BoardTemplate.gd"
 }, {
 "base": "Area2D",
 "class": "Card",
 "language": "GDScript",
-"path": "res://Card Framework/src/core/CardTemplate.gd"
+"path": "res://src/core/CardTemplate.gd"
 }, {
 "base": "Area2D",
 "class": "CardContainer",
 "language": "GDScript",
-"path": "res://Card Framework/src/core/CardContainer.gd"
+"path": "res://src/core/CardContainer.gd"
 }, {
 "base": "CardContainer",
 "class": "Hand",
 "language": "GDScript",
-"path": "res://Card Framework/src/core/Hand.gd"
+"path": "res://src/core/Hand.gd"
 }, {
 "base": "CardContainer",
 "class": "Pile",
 "language": "GDScript",
-"path": "res://Card Framework/src/core/Pile.gd"
+"path": "res://src/core/Pile.gd"
 } ]
 _global_script_class_icons={
 "Board": "",
@@ -50,11 +50,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-PluginSettings="*res://addons/github-integration/scripts/PluginSettings.gd"
-IconLoaderGithub="*res://addons/github-integration/scripts/IconLoaderGithub.gd"
-RestHandler="*res://addons/github-integration/scenes/RestHandler.tscn"
-UserData="*res://addons/github-integration/scripts/user_data.gd"
-cfc="*res://Card Framework/cfc.gd"
+cfc_config="*res://src/core/cfc_config.gd"
 
 [display]
 
@@ -64,10 +60,6 @@ window/size/test_width=1280
 window/size/test_height=720
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
-
-[editor_plugins]
-
-enabled=PoolStringArray( "github-integration" )
 
 [importer_defaults]
 

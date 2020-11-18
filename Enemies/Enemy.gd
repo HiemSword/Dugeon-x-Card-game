@@ -117,4 +117,4 @@ func pick_random_state(state_list):
 func _on_BattleRange_body_entered(body):
 	print("BATTLE with " + str(body))
 # warning-ignore:return_value_discarded
-	get_tree().change_scene("res://Card Game.tscn")
+	get_tree().change_scene("res://src/custom/Main.tscn")
